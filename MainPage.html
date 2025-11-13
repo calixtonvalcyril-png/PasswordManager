@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="MainPage.css">
+</head>
+<body>
+    <header>
+        <h1 id="Title">Password Manager</h1>
+    </header>
+
+    <main id="main-content">
+        <section class="Search" aria-labelledby="search-heading">
+            <h2 id="search-heading" class="visually-hidden">Search passwords</h2>
+            <form role="search" aria-label="Search saved passwords" class="search-form">
+                <label for="searchInput" class="visually-hidden">Search passwords</label>
+                <input id="searchInput" name="query" type="search" placeholder="Search passwords" autocomplete="off">
+                <button id="Search" type="submit" aria-label="Search">🔍 <span class="visually-hidden">Search</span></button>
+            </form>
+        </section>
+        <section class="Lists" aria-labelledby="saved-heading">
+            
+
+            <!-- Add new password form (hidden by default) -->
+            <form id="addForm" class="hidden" aria-hidden="true">
+                <fieldset>
+                    <legend><b>Add new password</b> </legend>
+                    <label>Website<input name="website" required></label>
+                    <label>Username<input name="username"></label>
+                    <label>Password
+                        <div class="input-with-icon">
+                            <input name="password" type="password">
+                            <button type="button" class="eye-toggle" aria-pressed="false" aria-label="Show password">👁️</button>
+                        </div>
+                    </label>
+                        <div>
+                            <button id="addSubmit" class="save" type="submit">Add</button>
+                            <button id="addCancel" class="cancel" type="button">Cancel</button>
+                        </div>
+                </fieldset>
+            </form>
+
+            <div class="container">
+                <div class="table-wrap">
+                    <table class="table" aria-describedby="table-desc">
+                        <h2 id="saved-heading">Saved Passwords</h2>
+                        <thead>
+                            <tr>
+                                <th scope="col">Website</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Password</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="PasswordTableBody">
+                            <!-- Password entries will be dynamically inserted here -->
+                            <!-- Example row. Dynamic scripts should insert rows as <tr>...</tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <div id="status" aria-live="polite" role="status" aria-atomic="true" class="status" hidden></div>
+    </main>
+    <!-- Edit modal (accessible) -->
+    <div id="editModal" class="modal" aria-hidden="true">
+        <div class="modal-overlay" data-action="close" tabindex="-1"></div>
+        <div class="modal-dialog" role="document" aria-labelledby="edit-title">
+            <form id="editForm">
+                <h3 id="edit-title">Edit password</h3>
+                <input type="hidden" name="id">
+                <label>Website
+                    <input name="website" required>
+                </label>
+                <label>Username
+                    <input name="username">
+                </label>
+                <label>Password
+                    <div class="input-with-icon">
+                        <input name="password" type="password">
+                        <button type="button" class="eye-toggle edit-eye" aria-pressed="false" aria-label="Show password">👁️</button>
+                    </div>
+                </label>
+                <div class="modal-actions">
+                    <button id="editSave" class="save" type="submit">Save</button>
+                    <button id="editCancel" class="cancel" type="button">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
